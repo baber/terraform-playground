@@ -4,10 +4,10 @@ provider "aws" {
   skip_get_ec2_platforms = true
 }
 
-resource "aws_instance" "baber-example" {
+resource "aws_instance" "test_ec2_instance" {
   ami = "ami-1a7f6d7e"
   instance_type = "t2.nano"
   tags = {
-    Name = "baber-test-ec2"
+    Name = "${var.instance_name}"
   }
 }

@@ -7,8 +7,8 @@ describe ec2("#{@instance_name}") do
   puts
 
   command = Thread.new do
-    system("terraform","init", "-var", "instance_name=#{@instance_name}", "../configurations/ec2")
-    system("terraform", "apply", "-var", "instance_name=#{@instance_name}", "../configurations/ec2")
+    system("terraform","init", "-var", "instance_name=#{@instance_name}", "configurations/ec2")
+    system("terraform", "apply", "-var", "instance_name=#{@instance_name}", "configurations/ec2")
   end
   command.join
 
@@ -22,7 +22,7 @@ describe ec2("#{@instance_name}") do
 
   after(:all) do
     command = Thread.new do
-      system("terraform", "destroy", "-var", "instance_name=#{@instance_name}", "-force", "../configurations/ec2")
+      system("terraform", "destroy", "-var", "instance_name=#{@instance_name}", "-force", "configurations/ec2")
     end
     command.join
   end

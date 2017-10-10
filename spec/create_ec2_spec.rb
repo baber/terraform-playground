@@ -3,8 +3,7 @@ require 'spec_helper'
 
 describe ec2("#{@instance_name}") do
 
-  before(:all) do |example|
-  puts
+  before(:all) do
 
   command = Thread.new do
     system("terraform","init", "-var", "instance_name=#{@instance_name}", "configurations/ec2")

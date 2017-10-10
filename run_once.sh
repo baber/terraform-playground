@@ -12,5 +12,7 @@ rvm use 2.4.2
 
 gem install bundler
 
-bundle install 
+bundle install
+
+bundle exec rake
 

@@ -1,6 +1,5 @@
 provider "aws" {
   region = "eu-west-2"
-  profile = "terraform"
   skip_get_ec2_platforms = true
 }
 

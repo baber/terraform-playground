@@ -2,7 +2,9 @@
 
 # Run Once Setup
 
-\curl -sSL https://get.rvm.io | bash -s -- --version 1.29.3
+curl -sSL https://rvm.io/mpapis.asc | gpg --import
+
+curl -sSL https://get.rvm.io | bash -s -- --version 1.29.3
 
 source ~/.rvm/scripts/rvm
 

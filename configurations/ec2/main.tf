@@ -1,7 +1,5 @@
-provider "aws" {
-  region = "eu-west-2"
-  skip_get_ec2_platforms = true
-}
+
+
 
 resource "aws_instance" "test_ec2_instance" {
   ami = "ami-1a7f6d7e"
@@ -9,4 +7,5 @@ resource "aws_instance" "test_ec2_instance" {
   tags = {
     Name = "${var.instance_name}"
   }
+  security_groups = ["${var.security_group}"]
 }

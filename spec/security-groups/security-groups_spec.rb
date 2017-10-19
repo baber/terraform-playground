@@ -5,12 +5,11 @@ describe security_group("allow_whitelisted_ssh"), :unit do
 
   before(:all) do
 
-  command = Thread.new do
-    system("terraform","init", "configurations/security-groups")
-    system("terraform", "apply", "configurations/security-groups")
-  end
-  command.join
+    ENV['AWS_PROFILE'] = 'terraform'
+    ENV['AWS_REGION'] = 'eu-west-2'
 
+    `terraform init /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations/security-groups`
+    `terraform apply /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations/security-groups`
   end
 
 
@@ -20,10 +19,8 @@ describe security_group("allow_whitelisted_ssh"), :unit do
   its(:inbound) { should be_opened(22).protocol('tcp') }
 
   after(:all) do
-    command = Thread.new do
-      system("terraform", "destroy", "-force", "configurations/security-groups")
-    end
-    command.join
+
+    `terraform destroy -force /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations/security-groups`
   end
 
 end

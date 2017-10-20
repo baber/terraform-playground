@@ -8,8 +8,8 @@ describe ec2("#{@instance_name}"), :integration do
     ENV['AWS_REGION'] = 'eu-west-2'
 
   command = Thread.new do
-    `terraform init -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations`
-    `terraform apply -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations`
+    `terraform init -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} ./configurations`
+    `terraform apply -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} ./configurations`
   end
   command.join
 
@@ -24,7 +24,7 @@ describe ec2("#{@instance_name}"), :integration do
   it { should have_security_groups(["#{RSpec.configuration.security_group}"]) }
 
   after(:all) do
-    `terraform destroy -force -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} /Users/baberkhalil/software/projects/EqualExperts/HMRC/workspace/terraform-playground/configurations`
+    `terraform destroy -force -var instance_name=#{@instance_name} -var security_group=#{RSpec.configuration.security_group} ./configurations`
   end
 
 end
